@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="tl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="color-scheme" content="dark"><meta name="description" content="ALTAB AFK: tingnan at i-control ang lahat ng bukas mong laro at app sa iisang page. / See and control every open game and app from one page.">
+<title>ALTAB AFK — See &amp; control every open game and app</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; manifest-src 'self'; base-uri 'none'; form-action 'none'; connect-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="icon" href="favicon.ico" sizes="any"><link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"><link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"><link rel="manifest" href="site.webmanifest">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="ALTAB AFK logo and tagline">
+<link rel="canonical" href="https://astrazenika.github.io/altab-afk/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="ALTAB AFK">
+<meta property="og:title" content="ALTAB AFK — See &amp; control every open game and app">
+<meta property="og:description" content="Live previews of all your windows, Takeover mode, BOOST cleaner, anti-lag. Free for Windows.">
+<meta property="og:image" content="https://astrazenika.github.io/altab-afk/og.png"><meta property="og:url" content="https://astrazenika.github.io/altab-afk/">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://astrazenika.github.io/altab-afk/og.png">
+<meta name="theme-color" content="#070b14">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout concept: cinematic poster. Giant headline + tilted live app mock, four-colour logo bar as the recurring divider. */
+:root{
+  --ink:#070b14; --ink2:#0b111e; --panel:#0e1524; --panel2:#131c30; --line:#1d2a44;
+  --txt:#eef3ff; --mut:#93a3c4; --dim:#5d6e91;
+  --blue:#4f8cff; --amber:#ff9f1a; --coral:#ff5d6c; --mint:#78dca0;
+  --f-d:'Unbounded','Arial Black',system-ui,sans-serif;
+  --f-b:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-m:'JetBrains Mono',ui-monospace,Consolas,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--txt);font-family:var(--f-b);font-size:16px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));overflow-x:hidden}
+a{color:inherit}
+.wrap{max-width:1160px;margin:0 auto}
+h1,h2,h3{font-family:var(--f-d);margin:0;text-wrap:balance;line-height:1.08;letter-spacing:-.01em}
+p{margin:0}
+.quad{display:grid;grid-template-columns:repeat(2,1fr);gap:3px;width:26px;height:26px;flex:none}
+.quad i{border-radius:4px;display:block}
+.quad i:nth-child(1){background:var(--blue)}.quad i:nth-child(2){background:var(--amber)}
+.quad i:nth-child(3){background:var(--coral)}.quad i:nth-child(4){background:var(--mint)}
+.bar4{height:4px;border-radius:4px;background:linear-gradient(90deg,var(--blue) 0 25%,var(--amber) 25% 50%,var(--coral) 50% 75%,var(--mint) 75%)}
+
+/* NAV */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;gap:20px;padding-block:14px;
+  background:color-mix(in srgb,var(--ink) 86%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);
+  margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
+nav .brand{display:flex;align-items:center;gap:10px;font-family:var(--f-d);font-weight:700;letter-spacing:.06em;font-size:15px;text-decoration:none}
+nav .brand b{color:var(--blue);font-weight:700}
+nav .links{display:flex;gap:22px;margin-left:auto;font-size:14px;color:var(--mut)}
+nav .links a{text-decoration:none}nav .links a:hover{color:var(--txt)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--f-b);font-weight:700;font-size:15px;
+  padding:13px 24px;border-radius:14px;border:1px solid transparent;text-decoration:none;cursor:pointer;transition:transform .15s,filter .15s,box-shadow .15s}
+.btn:focus-visible{outline:3px solid var(--txt);outline-offset:3px}
+.btn.pri{background:linear-gradient(180deg,#5d98ff,#3f78ec);color:#fff;box-shadow:0 10px 30px -8px rgba(79,140,255,.65),inset 0 1px 0 rgba(255,255,255,.25)}
+.btn.pri:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.btn.sec{background:transparent;color:var(--txt);border-color:var(--line)}
+.btn.sec:hover{border-color:var(--mut)}
+.btn.xl{font-size:18px;padding:18px 32px;border-radius:18px}
+nav .btn{padding:10px 18px;font-size:14px}
+
+/* HERO */
+.hero{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,1fr);gap:48px;align-items:center;padding-block:68px 56px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-m);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);
+  border:1px solid var(--line);border-radius:999px;padding:7px 14px;background:var(--ink2)}
+.eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 0 rgba(120,220,160,.6);animation:ping 2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 9px rgba(120,220,160,0)}100%{box-shadow:0 0 0 0 rgba(120,220,160,0)}}
+.hero h1{font-size:clamp(40px,6.6vw,84px);font-weight:900;margin-top:22px;letter-spacing:-.03em}
+.hero h1 .strike{position:relative;color:var(--dim);white-space:nowrap}
+.hero h1 .strike::after{content:"";position:absolute;left:-2%;right:-2%;top:54%;height:.12em;background:var(--coral);transform:rotate(-3deg);border-radius:4px}
+.hero h1 .grad{background:linear-gradient(90deg,var(--blue),var(--mint) 55%,var(--amber));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .lead{margin-top:22px;font-size:clamp(17px,2vw,20px);color:var(--mut);max-width:52ch}
+.hero .lead b{color:var(--txt);font-weight:600}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px;align-items:center}
+.meta{display:flex;gap:10px 22px;flex-wrap:wrap;margin-top:22px;font-size:13px;color:var(--mut)}
+.meta span{display:inline-flex;align-items:center;gap:8px}
+.meta span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--mint)}
+
+/* APP MOCK */
+.stagewrap{position:relative;min-width:0}
+.glow{position:absolute;inset:-12% -8%;background:radial-gradient(40% 40% at 25% 30%,rgba(79,140,255,.35),transparent 70%),radial-gradient(35% 35% at 80% 20%,rgba(255,159,26,.22),transparent 70%),radial-gradient(40% 40% at 70% 90%,rgba(255,93,108,.22),transparent 70%);filter:blur(30px);z-index:0;pointer-events:none}
+.app{position:relative;z-index:1;border:1px solid #27385c;border-radius:18px;background:var(--panel);overflow:hidden;
+  box-shadow:0 40px 90px -30px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.03);transform:perspective(1400px) rotateY(-9deg) rotateX(3deg);transform-origin:70% 50%}
+.app .top{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--line);background:#0a1120}
+.app .top .quad{width:20px;height:20px;gap:2px}.app .top .quad i{border-radius:3px}
+.app .top .nm{font-family:var(--f-d);font-weight:700;font-size:12px;letter-spacing:.08em}.app .top .nm b{color:var(--blue)}
+.app .top .pill{margin-left:auto;font-size:11px;padding:5px 10px;border-radius:8px;border:1px solid var(--amber);color:#ffc266}
+.app .tabs{display:flex;gap:6px;padding:10px 14px;flex-wrap:wrap}
+.app .tabs span{font-size:11px;padding:5px 11px;border-radius:999px;border:1px solid var(--line);color:var(--mut)}
+.app .tabs span.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.app .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:4px 14px 16px}
+.card{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--panel2);position:relative}
+.card .th{aspect-ratio:16/10;position:relative;overflow:hidden}
+.card .th::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.18) 50%,transparent 65%);transform:translateX(-120%);animation:sweep 3.8s infinite}
+.card:nth-child(2) .th::after{animation-delay:.5s}.card:nth-child(3) .th::after{animation-delay:1s}.card:nth-child(4) .th::after{animation-delay:1.5s}.card:nth-child(5) .th::after{animation-delay:2s}.card:nth-child(6) .th::after{animation-delay:2.5s}
+@keyframes sweep{60%,100%{transform:translateX(120%)}}
+.s1{background:linear-gradient(180deg,#7cc4ff 0 46%,#7ddf9a 46%)}
+.s2{background:linear-gradient(180deg,#ffbf7a 0 50%,#d9694e 50%)}
+.s3{background:linear-gradient(180deg,#a79bff 0 48%,#46387a 48%)}
+.s4{background:linear-gradient(180deg,#ff8fb1 0 44%,#7a2e5a 44%)}
+.s5{background:linear-gradient(180deg,#6ee7d0 0 52%,#1f6f78 52%)}
+.s6{background:linear-gradient(180deg,#ffe27a 0 50%,#c2832b 50%)}
+.th i{position:absolute;display:block;border-radius:50%;background:rgba(255,255,255,.55)}
+.card .x{position:absolute;top:5px;right:5px;width:15px;height:15px;border-radius:50%;background:rgba(7,11,20,.8);color:#ffb3bb;font-size:8px;display:grid;place-items:center;font-style:normal;z-index:2}
+.card .ft{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:7px 9px}
+.card .ft b{font-size:10.5px;font-weight:600}.card .ft small{display:block;font-size:9px;color:var(--dim)}
+.card .ft em{font-style:normal;font-size:9px;padding:3px 7px;border-radius:999px;border:1px solid #2c4c8f;color:#9cc2ff;white-space:nowrap}
+.cursor{position:absolute;z-index:3;left:30%;top:46%;width:22px;height:22px;animation:roam 7s ease-in-out infinite}
+@keyframes roam{0%{transform:translate(0,0)}25%{transform:translate(150px,10px)}50%{transform:translate(180px,90px)}75%{transform:translate(40px,110px)}100%{transform:translate(0,0)}}
+.float{position:absolute;z-index:4;font-size:12px;font-weight:700;padding:10px 14px;border-radius:12px;background:#0b1424;border:1px solid #2a3d66;box-shadow:0 14px 34px -10px rgba(0,0,0,.8);display:flex;align-items:center;gap:9px;animation:bob 5s ease-in-out infinite}
+.float kbd{font-family:var(--f-m);background:#ffd54a;color:#111;border-radius:6px;padding:2px 9px;font-size:14px}
+.float.a{left:-4%;bottom:12%}.float.b{right:-1%;top:-5%;animation-delay:1.2s;border-color:#5b3d12}.float.c{right:6%;bottom:-3%;animation-delay:2.2s}
+@keyframes bob{50%{transform:translateY(-8px)}}
+
+/* SECTIONS */
+section{padding-block:88px}
+.sec-h{max-width:760px;margin-bottom:46px}
+.kicker{font-family:var(--f-m);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin-bottom:14px;display:block}
+.sec-h h2{font-size:clamp(28px,4.4vw,52px);font-weight:900;letter-spacing:-.025em}
+.sec-h p{margin-top:16px;color:var(--mut);font-size:18px;max-width:58ch}
+
+/* BEFORE / AFTER */
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.ba>div{border:1px solid var(--line);border-radius:20px;padding:30px;background:var(--ink2);min-width:0}
+.ba h3{font-size:20px;margin-bottom:16px}
+.ba ul{margin:0;padding:0;list-style:none;display:grid;gap:12px;color:var(--mut)}
+.ba li{position:relative;padding-left:36px}
+.ba li::before{position:absolute;left:0;top:2px;font-weight:800;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px}
+.ba .bad li::before{content:"✕";background:rgba(255,93,108,.16);color:var(--coral)}
+.ba .good{background:linear-gradient(160deg,#10203d,#0c1426);border-color:#2a4a85}
+.ba .good li{color:var(--txt)}
+.ba .good li::before{content:"✓";background:rgba(120,220,160,.18);color:var(--mint)}
+
+/* FEATURES */
+.feats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.feat{border:1px solid var(--line);border-radius:20px;padding:26px;background:var(--ink2);min-width:0;transition:border-color .2s,transform .2s}
+.feat:hover{border-color:#34508a;transform:translateY(-3px)}
+.feat .ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;margin-bottom:18px;font-size:22px}
+.feat:nth-child(4n+1) .ic{background:rgba(79,140,255,.16)}.feat:nth-child(4n+2) .ic{background:rgba(255,159,26,.16)}
+.feat:nth-child(4n+3) .ic{background:rgba(255,93,108,.16)}.feat:nth-child(4n+4) .ic{background:rgba(120,220,160,.16)}
+.feat h3{font-size:17px;margin-bottom:10px;letter-spacing:0}
+.feat p{color:var(--mut);font-size:15px}
+
+/* SPOTLIGHTS */
+.spot{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+.spot+.spot{margin-top:70px}
+.spot.rev>.txt{order:2}
+.spot h3{font-size:clamp(24px,3.4vw,40px);font-weight:900;letter-spacing:-.02em}
+.spot p{margin-top:16px;color:var(--mut);font-size:17px}
+.spot ul{margin:20px 0 0;padding:0;list-style:none;display:grid;gap:10px}
+.spot li{position:relative;padding-left:22px;color:var(--txt);font-size:15px}
+.spot li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:8px;border-radius:2px;background:var(--mint)}
+.demo{border:1px solid var(--line);border-radius:22px;background:var(--panel);padding:26px;position:relative;overflow:hidden;min-width:0}
+.fsdemo{aspect-ratio:16/10;border-radius:14px;background:linear-gradient(180deg,#6fb8ff 0 48%,#58c47a 48%);position:relative;overflow:hidden;border:1px solid #2a3d66}
+.fsdemo .ban{position:absolute;left:50%;bottom:6%;transform:translateX(-50%);background:rgba(10,14,24,.92);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:9px 18px;font-size:13px;white-space:nowrap}
+.fsdemo .ban kbd{font-family:var(--f-m);background:#ffd54a;color:#111;font-weight:700;border-radius:6px;padding:2px 9px;margin-left:4px}
+.fsdemo .big{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);font-family:var(--f-d);font-weight:900;font-size:clamp(22px,4vw,44px);letter-spacing:-.02em;text-shadow:0 4px 24px rgba(0,0,0,.45)}
+.fsdemo .cur{position:absolute;left:62%;top:60%;width:22px;height:22px;animation:roam2 6s ease-in-out infinite}
+@keyframes roam2{50%{transform:translate(-90px,-50px)}}
+.gauges{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.g{border:1px solid var(--line);border-radius:12px;padding:12px;background:#0a1120}
+.g small{display:block;color:var(--dim);font-size:11px;letter-spacing:.08em}
+.g b{font-family:var(--f-d);font-size:22px;display:block;margin:2px 0 8px}
+.g .tr{height:6px;background:#1c2740;border-radius:4px;overflow:hidden}.g .tr i{display:block;height:100%;border-radius:4px;background:var(--blue);animation:fillbar 2.6s ease-out both}
+.g:nth-child(2) .tr i{background:var(--amber)}.g:nth-child(3) .tr i{background:var(--mint)}
+@keyframes fillbar{from{width:0}}
+.boostbtn{margin-top:16px;width:100%;border:0;border-radius:999px;padding:16px;font-family:var(--f-b);font-weight:800;font-size:17px;color:#fff;background:linear-gradient(90deg,#ff9f1a,#ff5d6c);box-shadow:0 12px 30px -10px rgba(255,93,108,.6);cursor:default}
+.log{margin-top:14px;font-family:var(--f-m);font-size:12.5px;color:#9fe6b0;display:grid;gap:5px}
+
+/* DOWNLOAD */
+.dl{border:1px solid #2a4a85;border-radius:28px;background:linear-gradient(150deg,#12254a 0%,#0b1426 55%,#1b1230 100%);padding:clamp(24px,5vw,56px);position:relative;overflow:hidden}
+.dl::before{content:"";position:absolute;inset:0;background:radial-gradient(50% 60% at 100% 0,rgba(255,159,26,.14),transparent 70%),radial-gradient(40% 50% at 0 100%,rgba(79,140,255,.2),transparent 70%);pointer-events:none}
+.dl>*{position:relative}
+.dl-top{display:flex;gap:28px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:34px}
+.dl-top h2{font-size:clamp(28px,4.4vw,50px);font-weight:900;letter-spacing:-.025em;max-width:15ch}
+.dl-box{display:grid;gap:10px;justify-items:start}
+.dl-box small{color:var(--mut);font-size:13px}
+.dl-box .soon{color:var(--amber)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;counter-reset:s}
+.step{border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:22px;background:rgba(7,11,20,.55);min-width:0;counter-increment:s}
+.step::before{content:counter(s);font-family:var(--f-d);font-weight:900;font-size:40px;line-height:1;display:block;margin-bottom:14px;background:linear-gradient(135deg,var(--blue),var(--mint));-webkit-background-clip:text;background-clip:text;color:transparent}
+.step:nth-child(2)::before{background:linear-gradient(135deg,var(--mint),var(--amber));-webkit-background-clip:text;background-clip:text}
+.step:nth-child(3)::before{background:linear-gradient(135deg,var(--amber),var(--coral));-webkit-background-clip:text;background-clip:text}
+.step:nth-child(4)::before{background:linear-gradient(135deg,var(--coral),var(--blue));-webkit-background-clip:text;background-clip:text}
+.step h3{font-size:15px;margin-bottom:8px;letter-spacing:0}
+.step p{font-size:14px;color:var(--mut)}
+.step code,.guide code,.faq code{font-family:var(--f-m);font-size:.88em;background:#0a1120;border:1px solid var(--line);border-radius:6px;padding:1px 7px;color:#cfe0ff;white-space:nowrap}
+.warn{margin-top:22px;border:1px solid #6b4a14;background:rgba(255,159,26,.08);border-radius:16px;padding:18px 20px;display:flex;gap:14px;align-items:flex-start;color:#ffd9a1;font-size:15px}
+.warn b{color:#ffe7c2}
+.warn .ico{flex:none;font-size:20px}
+
+/* GUIDE */
+.tabs2{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.tabs2 button{font-family:var(--f-b);font-weight:600;font-size:14px;color:var(--mut);background:var(--ink2);border:1px solid var(--line);border-radius:999px;padding:10px 18px;cursor:pointer}
+.tabs2 button:hover{color:var(--txt);border-color:var(--mut)}
+.tabs2 button[aria-selected="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+.tabs2 button:focus-visible{outline:3px solid var(--txt);outline-offset:2px}
+.guide{border:1px solid var(--line);border-radius:22px;background:var(--ink2);padding:clamp(22px,4vw,40px)}
+.guide[hidden]{display:none!important}
+.guide ol{margin:0;padding:0;list-style:none;display:grid;gap:16px;counter-reset:g}
+.guide li{display:grid;grid-template-columns:34px 1fr;gap:14px;counter-increment:g;color:var(--mut);font-size:16px}
+.guide li::before{content:counter(g);width:34px;height:34px;border-radius:10px;background:var(--panel2);border:1px solid var(--line);display:grid;place-items:center;font-family:var(--f-m);font-weight:700;color:var(--txt);font-size:14px}
+.guide li b{color:var(--txt);font-weight:600}
+.guide li>div{min-width:0}
+.guide h4{font-family:var(--f-d);font-size:15px;margin:26px 0 14px;color:var(--txt)}.guide h4:first-child{margin-top:0}
+.guide .note{margin-top:20px;border-left:3px solid var(--amber);padding:4px 0 4px 16px;color:var(--mut);font-size:15px}
+kbd{font-family:var(--f-m);background:#ffd54a;color:#111;border-radius:6px;padding:1px 8px;font-weight:700;font-size:.9em}
+
+/* FAQ */
+.faq{display:grid;gap:10px;max-width:860px}
+.faq details{border:1px solid var(--line);border-radius:16px;background:var(--ink2);padding:0 22px}
+.faq summary{cursor:pointer;list-style:none;padding:19px 0;font-weight:700;font-size:16px;display:flex;justify-content:space-between;gap:16px;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--f-m);color:var(--blue);font-size:22px;flex:none;transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq summary:focus-visible{outline:3px solid var(--txt);outline-offset:2px;border-radius:8px}
+.faq details p{padding-bottom:20px;color:var(--mut);font-size:15.5px;max-width:70ch}
+
+/* FINAL */
+.final{text-align:center;padding-block:90px 70px}
+.final h2{font-size:clamp(32px,6vw,76px);font-weight:900;letter-spacing:-.03em;max-width:16ch;margin:0 auto}
+.final p{margin:22px auto 34px;color:var(--mut);font-size:18px;max-width:44ch}
+footer{border-top:1px solid var(--line);padding-block:30px 40px;color:var(--dim);font-size:13px;display:grid;gap:10px;justify-items:center;text-align:center}
+footer b{color:var(--txt)}
+
+@media (max-width:980px){
+  .hero{grid-template-columns:1fr;gap:56px;padding-block:44px 40px}
+  .app{transform:none}
+  .float.a{left:2%}.float.b{right:2%}
+  .feats{grid-template-columns:1fr 1fr}
+  .spot{grid-template-columns:1fr;gap:28px}.spot.rev>.txt{order:0}
+  .steps{grid-template-columns:1fr 1fr}
+  .ba{grid-template-columns:1fr}
+  nav .links{display:none}nav .btn{margin-left:auto}
+  section{padding-block:64px}
+}
+@media (max-width:560px){
+  .feats,.steps{grid-template-columns:1fr}
+  .app .grid{grid-template-columns:1fr 1fr}.app .grid .card:nth-child(n+5){display:none}
+  .float{font-size:11px;padding:8px 11px}.float.c{display:none}
+  .btn.xl{width:100%}
+  .glow{inset:-4% 0}
+  .gauges{grid-template-columns:1fr}
+  .cursor{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;margin-left:auto;flex:none}
+nav .links+.lang{margin-left:0}
+.lang button{font-family:var(--f-m);font-weight:700;font-size:12px;letter-spacing:.06em;color:var(--mut);background:transparent;border:0;padding:8px 13px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--blue);color:#fff}
+.lang button:focus-visible{outline:3px solid var(--txt);outline-offset:-3px}
+@media (max-width:980px){nav .btn{margin-left:0}}
+</style>
+</head><body>
+<nav>
+  <a class="brand" href="#top" aria-label="ALTAB AFK" data-i="0"><span class="quad" aria-hidden="true"><i></i><i></i><i></i><i></i></span>ALTAB <b>AFK</b></a>
+  <div class="links"><a href="#features" data-i="1">Features</a><a href="#download" data-i="2">Paano i-download</a><a href="#gamitin" data-i="3">Paano gamitin</a><a href="#faq" data-i="4">FAQ</a></div>
+  <div class="lang" role="group" aria-label="Language / Wika"><button type="button" id="l-tl" aria-pressed="true">TL</button><button type="button" id="l-en" aria-pressed="false">EN</button></div><a class="btn pri" href="#download" data-download="" data-i="5">I-download</a>
+</nav>
+
+<main class="wrap" id="top">
+  <header class="hero">
+    <div>
+      <span class="eyebrow" data-i="6"><span class="dot"></span>Para sa Windows 10 / 11</span>
+      <h1 data-i="7"><span class="strike">Alt+Tab</span> na lang ba <span class="grad">palagi?</span></h1>
+      <p class="lead" data-i="8">Ang <b>ALTAB AFK</b> ay isang command center para sa PC mo. Lahat ng bukas na laro at app, <b>nakikita nang sabay</b> at nako-control mula sa iisang screen. Ilipat sa <b>MONITOR AFK</b>, linisin ang PC gamit ang <b>BOOST</b>, tapos balik sa paglalaro.</p>
+      <div class="cta-row">
+        <a class="btn pri xl" href="#download" data-download="" data-i="9">⬇ I-download para sa Windows</a>
+        <a class="btn sec xl" href="#gamitin" data-i="10">Paano gamitin</a>
+      </div>
+      <div class="meta"><span data-i="11">Isang download lang, kasama na ang Python</span><span data-i="12">Walang CMD window</span><span data-i="13">Tumatakbo sa mismong PC mo</span></div>
+    </div>
+    <div class="stagewrap" aria-hidden="true">
+      <div class="glow"></div>
+      <div class="app">
+        <div class="top"><span class="quad"><i></i><i></i><i></i><i></i></span><span class="nm">ALTAB <b>AFK</b></span><span class="pill">⚡ BOOST</span></div>
+        <div class="tabs"><span>All 11</span><span class="on">Games 10</span><span>Browsers 1</span><span>Files 1</span><span>Chat 1</span></div>
+        <div class="grid">
+          <div class="card"><div class="th s1"><i style="width:26%;height:36%;left:12%;top:26%"></i></div><em class="x">✕</em><div class="ft"><div><b>Game 1</b><small>M4 MONITOR AFK</small></div><em>Ibalik</em></div></div>
+          <div class="card"><div class="th s2"><i style="width:20%;height:30%;left:55%;top:30%"></i></div><em class="x">✕</em><div class="ft"><div><b>Game 2</b><small>M4 MONITOR AFK</small></div><em>Ibalik</em></div></div>
+          <div class="card"><div class="th s3"><i style="width:30%;height:34%;left:30%;top:22%"></i></div><em class="x">✕</em><div class="ft"><div><b>Game 3</b><small>M1</small></div><em>→ AFK</em></div></div>
+          <div class="card"><div class="th s4"><i style="width:22%;height:32%;left:60%;top:28%"></i></div><em class="x">✕</em><div class="ft"><div><b>Game 4</b><small>M4 MONITOR AFK</small></div><em>Ibalik</em></div></div>
+          <div class="card"><div class="th s5"><i style="width:28%;height:30%;left:18%;top:30%"></i></div><em class="x">✕</em><div class="ft"><div><b>Game 5</b><small>M4 MONITOR AFK</small></div><em>Ibalik</em></div></div>
+          <div class="card"><div class="th s6"><i style="width:24%;height:34%;left:50%;top:24%"></i></div><em class="x">✕</em><div class="ft"><div><b>Game 6</b><small>M2</small></div><em>→ AFK</em></div></div>
+        </div>
+        <svg class="cursor" viewBox="0 0 22 22" width="22" height="22"><path d="M2 2 L2 18 L6.5 14 L9.5 20.5 L12.5 19 L9.5 12.8 L15.5 12.8 Z" fill="#fff" stroke="#000" stroke-width="1.4" stroke-linejoin="round"></path></svg>
+      </div>
+      <div class="float a" data-i="14"><kbd>F8</kbd> para lumabas sa Takeover</div>
+      <div class="float b" data-i="15">⚡ BOOST LAHAT</div>
+      <div class="float c" data-i="16"><span class="quad" style="width:16px;height:16px;gap:2px"><i></i><i></i><i></i><i></i></span> MONITOR AFK</div>
+    </div>
+  </header>
+  <div class="bar4" aria-hidden="true"></div>
+
+  <section id="problema">
+    <div class="sec-h"><span class="kicker" data-i="17">Dati vs. ngayon</span><h2 data-i="18">Sampung laro. Isang sagot.</h2><p data-i="19">Kapag marami kang bukas na window, ang pag-Alt+Tab ay parang paghahanap ng susi sa madilim na bag.</p></div>
+    <div class="ba">
+      <div class="bad"><h3 data-i="20">Walang ALTAB AFK</h3><ul>
+        <li data-i="21">Alt+Tab nang paulit-ulit para hanapin ang tamang window</li>
+        <li data-i="22">Hindi mo alam kung ano ang nangyayari sa mga laro sa likod</li>
+        <li data-i="23">Lahat ng laro at app ay nagsisiksikan sa iisang screen</li>
+        <li data-i="24">Mabagal ang PC pero hindi mo alam kung ano ang kumakain ng RAM</li></ul></div>
+      <div class="good"><h3 data-i="25">Gamit ang ALTAB AFK</h3><ul>
+        <li data-i="26">Lahat ng window, <b>live na preview</b> sa iisang page</li>
+        <li data-i="27">I-click ang kahit anong card para i-control ito mismo</li>
+        <li data-i="28">Ilipat ang mga laro sa <b>MONITOR AFK</b>, isang pindot lang</li>
+        <li data-i="29">Pindutin ang <b>BOOST</b> para linisin at pagaanin ang PC</li></ul></div>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="sec-h"><span class="kicker" data-i="30">Features</span><h2 data-i="31">Lahat ng kailangan mo, nasa isang app.</h2></div>
+    <div class="feats">
+      <article class="feat"><div class="ic">🪟</div><h3 data-i="32">Lahat ng window, live</h3><p data-i="33">Parang Task View pero nasa website. Makikita mo ang bawat bukas na window na may gumagalaw na preview.</p></article>
+      <article class="feat"><div class="ic">🖱️</div><h3 data-i="34">I-control mula sa page</h3><p data-i="35">Mag-click, mag-scroll, mag-type, mag-drag. Gumagana ito sa mismong window kahit nasa ibang monitor.</p></article>
+      <article class="feat"><div class="ic">🌙</div><h3 data-i="36">MONITOR AFK</h3><p data-i="37">Ilipat ang mga laro sa isang virtual monitor, para malinis ang main screen mo. Ibalik sila sa dati nilang pwesto kahit kailan.</p></article>
+      <article class="feat"><div class="ic">🗂️</div><h3 data-i="38">Mga category</h3><p data-i="39">Games, Browsers, Files, Chat at iba pa. Isang tab lang para sa mga laro mo, hindi na maghahalo-halo.</p></article>
+      <article class="feat"><div class="ic">⚡</div><h3 data-i="40">BOOST</h3><p data-i="41">Linisin ang temp files, ibalik ang RAM na hindi gamit, High Performance na power plan, at unahin ang mga laro.</p></article>
+      <article class="feat"><div class="ic">📱</div><h3 data-i="42">Remote sa phone</h3><p data-i="43">Kontrolin ang PC mula sa phone sa parehong Wi-Fi, may password. Hawak na right-click, WASD at drag.</p></article>
+    </div>
+  </section>
+
+  <section id="spotlights" style="padding-top:20px">
+    <div class="spot">
+      <div class="txt">
+        <span class="kicker" data-i="44">Takeover</span>
+        <h3 data-i="45">Isang pindot. Ang mouse mo, nasa laro na.</h3>
+        <p data-i="46">Pindutin ang <b>FULLSCREEN</b> sa ilalim ng view. Pupunta agad ang tunay mong mouse at keyboard sa laro sa MONITOR AFK, at makikita mo ang mouse arrow mo sa stream.</p>
+        <ul><li data-i="47">Hawak na right-click para sa camera, WASD, at drag: gumagana</li><li data-i="48">Pindutin ang <kbd>F8</kbd> para lumabas. Nakasulat ito sa screen</li><li data-i="49">Kusa ring lalabas kapag nag-Alt+Tab ka o nagsara ang laro</li></ul>
+      </div>
+      <div class="demo" aria-hidden="true"><div class="fsdemo"><div class="big" data-i="50">Naglalaro ka na</div>
+        <svg class="cur" viewBox="0 0 22 22"><path d="M2 2 L2 18 L6.5 14 L9.5 20.5 L12.5 19 L9.5 12.8 L15.5 12.8 Z" fill="#fff" stroke="#000" stroke-width="1.4" stroke-linejoin="round"></path></svg>
+        <div class="ban" data-i="51">Para lumabas, pindutin ang <kbd>F8</kbd></div></div></div>
+    </div>
+    <div class="spot rev">
+      <div class="txt">
+        <span class="kicker" data-i="52">BOOST</span>
+        <h3 data-i="53">Pagaanin ang PC, bago pa mag-lag.</h3>
+        <p data-i="54">Isang pindot ng <b>BOOST LAHAT</b> at mag-uumpisa ang paglilinis. Ligtas ito: hindi ito humahawak ng registry o system files.</p>
+        <ul><li data-i="55">Nililinis ang lumang temp files</li><li data-i="56">Ibinabalik sa Windows ang RAM na nakatambay lang</li><li data-i="57">Ginagawang High Performance ang power plan</li><li data-i="58">Inuuna ang mga larong ginagamit mo, pinagaan ang mga nasa AFK</li><li data-i="59">Auto anti-lag: bumababa ang bilis ng preview kapag bumagal, bumabalik kapag gumaan</li></ul>
+      </div>
+      <div class="demo" aria-hidden="true">
+        <div class="gauges"><div class="g"><small data-i="60">CPU</small><b>38%</b><div class="tr"><i style="width:38%"></i></div></div><div class="g"><small data-i="61">RAM</small><b>62%</b><div class="tr"><i style="width:62%"></i></div></div><div class="g"><small data-i="62">DISK</small><b>120 GB</b><div class="tr"><i style="width:26%"></i></div></div></div>
+        <div class="boostbtn" role="presentation" data-i="63">⚡ BOOST LAHAT</div>
+        <div class="log"><span data-i="64">✓ Nalinis ang temp files</span><span data-i="65">✓ Nabalik ang RAM</span><span data-i="66">✓ Power: High Performance</span><span data-i="67">✓ Inuna ang mga laro mo</span></div>
+        <p style="margin-top:14px;font-size:12px;color:var(--dim)" data-i="68">Halimbawa lang ang mga numero sa larawan.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="download">
+    <div class="dl">
+      <div class="dl-top">
+        <div><span class="kicker" data-i="69">Download</span><h2 data-i="70">Apat na hakbang. Tapos na.</h2></div>
+        <div class="dl-box">
+          <a class="btn pri xl" href="#" id="dlmain" data-download="" data-i="71">⬇ I-download ang ALTAB AFK</a>
+          <small data-i="72">Windows 10/11 (64-bit) • <span id="dlsize">51 MB</span> • <span id="dlver">v22</span></small>
+          <small class="soon" id="dlsoon" hidden="" data-i="73">Ilalagay pa ang link ng download.</small>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="step"><h3 data-i="74">I-download ang zip</h3><p data-i="75">Pindutin ang download button. Mase-save ang <code>ALTAB-AFK-Windows.zip</code> sa Downloads folder mo.</p></div>
+        <div class="step"><h3 data-i="76">I-Extract ito</h3><p data-i="77">Right-click ang zip, piliin ang <b>Extract All</b>, tapos <b>Extract</b>. Huwag buksan ang laman mula sa loob ng zip.</p></div>
+        <div class="step"><h3 data-i="78">Patakbuhin ang Setup</h3><p data-i="79">Buksan ang bagong folder at i-double-click ang <code>Setup.bat</code>. Sagutin ang tanong na y o n. Walang kailangang i-install na Python.</p></div>
+        <div class="step"><h3 data-i="80">Buksan ang icon</h3><p data-i="81">May <b>ALTAB AFK</b> icon na sa Desktop at Start menu mo. I-double-click, at bubukas ang app.</p></div>
+      </div>
+      <div class="warn"><span class="ico">🛡️</span><div data-i="82"><b>May lumabas na asul na "Windows protected your PC"?</b> Normal ito sa mga bagong app na wala pang digital signature. Pindutin ang <b>More info</b>, tapos <b>Run anyway</b>. Ang ilang antivirus ay nagre-reklamo rin sa mga app na kayang mag-click at mag-type para sa iyo. Tumatakbo lang ang ALTAB AFK sa PC mo at hindi ito nagpapadala ng data kahit saan.</div></div>
+    </div>
+  </section>
+
+  <section id="gamitin">
+    <div class="sec-h"><span class="kicker" data-i="83">Tutorial</span><h2 data-i="84">Paano gamitin.</h2><p data-i="85">Pumili ng gusto mong matutunan.</p></div>
+    <div class="tabs2" role="tablist" aria-label="Mga tutorial">
+      <button role="tab" id="t-basic" aria-selected="true" aria-controls="p-basic" data-i="86">Simula</button>
+      <button role="tab" id="t-afk" aria-selected="false" aria-controls="p-afk" data-i="87">MONITOR AFK</button>
+      <button role="tab" id="t-take" aria-selected="false" aria-controls="p-take" data-i="88">Takeover</button>
+      <button role="tab" id="t-boost" aria-selected="false" aria-controls="p-boost" data-i="89">BOOST</button>
+      <button role="tab" id="t-phone" aria-selected="false" aria-controls="p-phone" data-i="90">Phone</button>
+    </div>
+
+    <div class="guide" id="p-basic" role="tabpanel" aria-labelledby="t-basic">
+      <ol>
+        <li><div data-i="91"><b>Buksan ang ALTAB AFK</b> gamit ang icon sa Desktop. Lalabas ang lahat ng bukas mong window bilang mga card na may live na preview.</div></li>
+        <li><div data-i="92"><b>Pumili ng category</b> sa taas: All, Games, Browsers, Files, Chat. Pwede mo ring gamitin ang search box.</div></li>
+        <li><div data-i="93"><b>I-click ang card</b> para buksan ang malaking view. Pwede kang mag-click, mag-double-click, mag-right-click, mag-scroll at mag-type mula doon.</div></li>
+        <li><div data-i="94"><b>Gusto mo nang isara ang isang window?</b> Pindutin ang maliit na <b>✕</b> sa kanang-itaas ng card nito. Kung may "Save?" na lumabas, makikita mo pa rin iyon.</div></li>
+        <li><div data-i="95"><b>Mabagal ang PC mo?</b> Itakda ang <b>Preview</b> sa "Tipid" o pindutin ang <b>Pause previews</b> habang naglalaro ka.</div></li>
+      </ol>
+    </div>
+
+    <div class="guide" id="p-afk" role="tabpanel" aria-labelledby="t-afk" hidden="">
+      <ol>
+        <li><div data-i="96"><b>Kailangan mo ng isang virtual monitor.</b> Libre ang <b>Virtual Display Driver</b> na ginagamit namin. Hanapin ito sa GitHub: <a href="https://github.com/VirtualDrivers/Virtual-Display-Driver" target="_blank" rel="noopener noreferrer"><code>VirtualDrivers/Virtual-Display-Driver</code></a>, i-install, at i-on ang bagong monitor.</div></li>
+        <li><div data-i="97">Sa Windows <b>Settings &gt; System &gt; Display</b>, piliin ang bagong monitor at <b>Extend these displays</b>.</div></li>
+        <li><div data-i="98">Sa ALTAB AFK, pindutin ang <b>→ AFK</b> sa isang card, o <b>Lahat → AFK</b> sa taas para ilipat ang lahat ng nakikita.</div></li>
+        <li><div data-i="99">Para ibalik: pindutin ang <b>Ibalik</b> sa card, o <b>Ibalik lahat</b>. Babalik ang window sa dating pwesto at laki nito.</div></li>
+      </ol>
+      <p class="note" data-i="100">Hindi tama ang numero ng monitor? Buksan ang malaking view ng kahit anong window, piliin ang monitor sa listahan, at pindutin ang <b>Ipakita</b> para makita ang numero nito. Pwede mo itong baguhin sa <b>Ayusin monitor</b>.</p>
+    </div>
+
+    <div class="guide" id="p-take" role="tabpanel" aria-labelledby="t-take" hidden="">
+      <ol>
+        <li><div data-i="101">Ilipat ang laro sa <b>MONITOR AFK</b> (tingnan ang nakaraang tab).</div></li>
+        <li><div data-i="102">I-click ang card ng laro para buksan ang malaking view.</div></li>
+        <li><div data-i="103">Pindutin ang asul na <b>FULLSCREEN</b> button sa gitna-baba. Mapupunta ang mouse at keyboard mo sa laro, at lalabas ang arrow mo sa stream.</div></li>
+        <li><div data-i="104">Para lumabas, pindutin ang <kbd>F8</kbd>. Nakasulat din ito sa ibaba ng screen habang naka-fullscreen.</div></li>
+      </ol>
+      <p class="note" data-i="105">Kung ma-stuck ang mouse: pindutin ang <b>Ctrl + Alt + Del</b> at <b>Esc</b>. Gumagana lang ang Takeover sa mismong PC, hindi sa phone. Ang mga laro na may anti-cheat (tulad ng Valorant) ay maaaring hindi tanggapin ang simulated na mouse at keyboard, kaya gamitin ito nang may pag-iingat.</p>
+    </div>
+
+    <div class="guide" id="p-boost" role="tabpanel" aria-labelledby="t-boost" hidden="">
+      <ol>
+        <li><div data-i="106">Pindutin ang <b>⚡ BOOST</b> sa taas. Makikita mo ang CPU, RAM at Disk ng PC mo.</div></li>
+        <li><div data-i="107">Pindutin ang <b>BOOST LAHAT</b>. Magli-linis ito ng temp files, magbabalik ng RAM, mag-s-set ng High Performance at mag-uuna sa mga laro mo.</div></li>
+        <li><div data-i="108">Sa listahan sa ibaba, lagyan ng check ang mga app na gusto mong isara at pindutin ang <b>Isara ang napili</b>. Mahinahon muna ito, parang pinindot mo ang X.</div></li>
+        <li><div data-i="109"><b>Pagaanin ang mga laro sa AFK</b> para mas smooth ang larong ginagamit mo. May <b>Ibalik sa normal</b> din.</div></li>
+      </ol>
+      <p class="note" data-i="110">Hindi nito mapapataas ang kaya ng hardware mo. Mas malaki pa ring tulong ang pagbaba ng Graphics Quality sa bawat laro.</p>
+    </div>
+
+    <div class="guide" id="p-phone" role="tabpanel" aria-labelledby="t-phone" hidden="">
+      <h4 data-i="136">A. Sa bahay (parehong Wi-Fi)</h4>
+      <ol>
+        <li><div data-i="137">Sa PC, buksan ang <code>run-remote.bat</code> sa folder ng ALTAB AFK (<code>%LOCALAPPDATA%\ALTAB AFK</code>). Hindi ito ang normal na icon: ito ang nagbubukas ng phone mode.</div></li>
+        <li><div data-i="138">Sa unang takbo, gumawa ng <b>password</b> (dalawang beses). Hindi mo makikita ang tina-type, normal iyon. Gumamit ng hindi bababa sa 8 character.</div></li>
+        <li><div data-i="139">Kapag may lumabas na Windows Firewall, i-check lang ang <b>Private networks</b>. Huwag i-check ang Public.</div></li>
+        <li><div data-i="140">Sa itim na window, makikita ang address para sa phone, hal. <code>http://192.168.1.20:5055</code>. Isulat o i-screenshot ito.</div></li>
+        <li><div data-i="141">Sa phone na nasa <b>parehong Wi-Fi</b>, buksan ang browser at i-type ang address na iyon. Ilagay ang password. Makikita mo na ang mga window ng PC mo.</div></li>
+      </ol>
+      <h4 data-i="142">B. Sa malayo (wala ka sa bahay)</h4>
+      <ol>
+        <li><div data-i="143">Mag-install ng <b>Tailscale</b> (libre) sa PC at sa phone. Mag-login sa <b>parehong account</b>. Naka-encrypt ito at hindi nailalabas ang PC mo sa internet.</div></li>
+        <li><div data-i="144">Sa PC, hanapin ang Tailscale IP (nagsisimula sa <code>100.</code>). Sa phone, buksan ang <code>http://100.x.x.x:5055</code> gamit ang IP na iyon.</div></li>
+        <li><div data-i="145">Kailangang <b>naka-on, gising, at hindi naka-lock</b> ang PC, at tumatakbo ang <code>run-remote.bat</code>. Huwag i-port-forward ang PC mo sa router.</div></li>
+      </ol>
+      <h4 data-i="146">C. Paano gamitin sa phone</h4>
+      <ol>
+        <li><div data-i="147"><b>Tap</b> = click. <b>Matagal na pindot</b> = right-click. <b>Drag</b> ng isang daliri = hawak at drag. <b>Dalawang daliri</b> pataas o pababa = scroll.</div></li>
+        <li><div data-i="148">Para sa mga laro: i-on ang <b>Game keys</b> para sa W A S D, Jump, Shift, E, R, F, at ang <b>Look</b> para sa camera (hal. Roblox).</div></li>
+        <li><div data-i="149">Para mag-type ng text: gamitin ang kahon na <b>Mag-type dito</b>, tapos Enter. May hanay din ng Esc, Enter, Tab, Backspace, Space at arrows.</div></li>
+        <li><div data-i="150">Para itigil ang phone mode: isara ang itim na window ng <code>run-remote.bat</code>. Para palitan ang password: burahin ang <code>remote_password.json</code> at patakbuhin ulit ang <code>run-remote.bat</code>.</div></li>
+      </ol>
+      <p class="note" data-i="151">Ang sinumang may password ay may buong kontrol sa PC mo. Gumamit ng malakas na password at huwag itong ibahagi. Mahina ang bilis kumpara sa totoong remote desktop, at ang mga laro na may anti-cheat ay maaaring mag-flag ng simulated na input. Hindi ito gagana kung naka-lock o naka-sleep ang PC.</p>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="sec-h"><span class="kicker" data-i="116">FAQ</span><h2 data-i="117">Mga madalas itanong.</h2></div>
+    <div class="faq">
+      <details><summary data-i="118">Anong PC ang kailangan?</summary><p data-i="119">Windows 10 o 11, 64-bit. Hindi gagana sa Mac o Linux. Hindi mo kailangang mag-install ng Python o iba pa, kasama na ang lahat sa download.</p></details>
+      <details><summary data-i="120">Ligtas ba ito?</summary><p data-i="121">Tumatakbo ito sa mismong PC mo (<code>127.0.0.1</code>) at hindi bukas sa ibang device maliban kung ikaw mismo ang mag-on ng remote mode na may password. Wala pa itong digital signature, kaya normal na may babala ang Windows o ang antivirus. Ang BOOST ay hindi humahawak ng registry o system files, at hindi ito nagpapatay ng system processes.</p></details>
+      <details><summary data-i="122">Mababan ba ako sa laro kapag ginamit ito?</summary><p data-i="123">Hindi namin masisiguro. Gumagamit ito ng simulated na mouse at keyboard, na maaaring hindi tanggapin ng mga laro na may mahigpit na anti-cheat (tulad ng Valorant). Basahin ang patakaran ng laro mo at gamitin ito sa sarili mong pananagutan. Ang ALTAB AFK ay hindi konektado sa Roblox, Microsoft, o sa alinmang laro.</p></details>
+      <details><summary data-i="124">Kailangan ba ng virtual monitor?</summary><p data-i="125">Hindi para sa karamihan ng features. Ang live preview, pag-control, mga category at BOOST ay gumagana nang wala nito. Kailangan lang ang virtual (o dagdag) monitor para sa MONITOR AFK at sa Takeover.</p></details>
+      <details><summary data-i="126">Mabigat ba ito sa PC?</summary><p data-i="127">Habang bukas ang app at may mga live na preview, gumagamit ito ng dagdag na CPU. Kapag nakasara ang app window, halos wala itong ginagawa. May <b>Preview: Auto</b>, <b>Tipid</b> at <b>Pause previews</b> para pagaanin ito, at mas mababa ang priority ng ALTAB AFK kaysa sa mga laro.</p></details>
+      <details><summary data-i="128">Paano i-update o tanggalin?</summary><p data-i="129">Para i-update, i-download ang bagong zip at patakbuhin ulit ang <code>Setup.bat</code>. Para tanggalin, patakbuhin ang <code>uninstall-app.bat</code> sa <code>%LOCALAPPDATA%\ALTAB AFK</code>, tapos burahin ang folder na iyon.</p></details>
+    </div>
+  </section>
+
+  <div class="bar4" aria-hidden="true"></div>
+  <section class="final">
+    <h2 data-i="130">Itigil na ang Alt+Tab.</h2>
+    <p data-i="131">Isang download. Isang page. Lahat ng window mo, hawak mo.</p>
+    <a class="btn pri xl" href="#download" data-download="" data-i="132">⬇ I-download para sa Windows</a>
+  </section>
+</main>
+
+<footer>
+  <div><span class="quad" style="display:inline-grid;vertical-align:middle;margin-right:8px;width:18px;height:18px;gap:2px"><i></i><i></i><i></i><i></i></span><b data-i="133">ALTAB AFK</b></div>
+  <div data-i="134">Created by: <b>Ramel Acedera</b></div>
+  <div data-i="135">Hindi konektado ang ALTAB AFK sa Roblox, Microsoft, o sa alinmang laro. Pag-aari ng kani-kanilang may-ari ang lahat ng pangalan.</div>
+</footer>
+
+
+
+<script>
+/* ===== Ilagay dito ang link ng download (hal. GitHub Releases o Google Drive) / Put your download link here ===== */
+var DOWNLOAD_URL = "https://github.com/Astrazenika/altab-afk/releases/latest/download/ALTAB-AFK-Windows.zip";
+var FILE_SIZE = "51 MB";
+var VERSION = "v22";
+var EN = [null, "Features", "How to download", "How to use", "FAQ", "Download", "<span class=\"dot\"></span>For Windows 10 / 11", "<span class=\"strike\">Alt+Tab</span> all day, <span class=\"grad\">every day?</span>", "<b>ALTAB AFK</b> is a command center for your PC. Every open game and app, <b>visible at the same time</b> and controllable from one screen. Move them to <b>MONITOR AFK</b>, clean up your PC with <b>BOOST</b>, then get back to playing.", "⬇ Download for Windows", "How to use", "One download, Python included", "No CMD window", "Runs on your own PC", "<kbd>F8</kbd> to exit Takeover", "⚡ BOOST ALL", null, "Before vs. now", "Ten games. One answer.", "When you have lots of windows open, Alt+Tab feels like looking for your keys in a dark bag.", "Without ALTAB AFK", "Alt+Tab again and again to find the right window", "No idea what's happening to the games in the background", "Every game and app crammed onto one screen", "Your PC is slow and you can't tell what's eating the RAM", "With ALTAB AFK", "Every window, <b>live preview</b> on one page", "Click any card to control it directly", "Move games to <b>MONITOR AFK</b> with one click", "Press <b>BOOST</b> to clean up and lighten your PC", "Features", "Everything you need, in one app.", "Every window, live", "Like Task View, but on a web page. See every open window with a moving preview.", "Control it from the page", "Click, scroll, type, drag. It works on the actual window, even on another monitor.", null, "Move your games to a virtual monitor to keep your main screen clean. Send them back to where they were any time.", "Categories", "Games, Browsers, Files, Chat and more. One tab just for your games, no more mess.", null, "Clean temp files, give back unused RAM, switch to the High Performance power plan, and prioritize your games.", "Remote from your phone", "Control your PC from your phone on the same Wi-Fi, password-protected. Hold right-click, WASD and drag included.", null, "One click. Your mouse is in the game.", "Press <b>FULLSCREEN</b> under the view. Your real mouse and keyboard go straight to the game on MONITOR AFK, and you see your mouse arrow in the stream.", "Hold right-click for the camera, WASD, and drag all work", "Press <kbd>F8</kbd> to exit. It's written on screen", "It also exits on its own when you Alt+Tab away or the game closes", "You're playing now", "To exit, press <kbd>F8</kbd>", null, "Lighten your PC before it lags.", "One click on <b>BOOST ALL</b> and the cleanup starts. It's safe: it doesn't touch the registry or system files.", "Cleans old temp files", "Gives idle RAM back to Windows", "Switches to the High Performance power plan", "Prioritizes the games you're playing and lightens the ones on AFK", "Auto anti-lag: preview speed drops when things slow down and goes back up when it's smooth again", null, null, null, "⚡ BOOST ALL", "✓ Temp files cleaned", "✓ RAM given back", null, "✓ Your games prioritized", "The numbers in the picture are just an example.", null, "Four steps. Done.", "⬇ Download ALTAB AFK", null, "The download link will be added soon.", "Download the zip", "Click the download button. <code>ALTAB-AFK-Windows.zip</code> is saved to your Downloads folder.", "Extract it", "Right-click the zip, choose <b>Extract All</b>, then <b>Extract</b>. Don't open the files from inside the zip.", "Run Setup", "Open the new folder and double-click <code>Setup.bat</code>. Answer the y or n question. No Python install needed.", "Open the icon", "There's now an <b>ALTAB AFK</b> icon on your Desktop and Start menu. Double-click it and the app opens.", "<b>Seeing a blue \"Windows protected your PC\" screen?</b> This is normal for new apps without a digital signature. Click <b>More info</b>, then <b>Run anyway</b>. Some antivirus programs also complain about apps that can click and type for you. ALTAB AFK only runs on your PC and doesn't send data anywhere.", "Tutorial", "How to use it.", "Pick what you want to learn. The app's buttons are labeled in Filipino, so their English meanings are in parentheses.", "Getting started", null, null, null, null, "<b>Open ALTAB AFK</b> with the Desktop icon. Every open window shows up as a card with a live preview.", "<b>Pick a category</b> at the top: All, Games, Browsers, Files, Chat. You can also use the search box.", "<b>Click a card</b> to open the large view. From there you can click, double-click, right-click, scroll and type.", "<b>Want to close a window?</b> Click the small <b>✕</b> at the top right of its card. If a \"Save?\" prompt appears, you'll still see it.", "<b>PC feels slow?</b> Set <b>Preview</b> to \"Tipid\" (Economy) or click <b>Pause previews</b> while you play.", "<b>You need a virtual monitor.</b> The <b>Virtual Display Driver</b> we use is free. Find it on GitHub: <a href=\"https://github.com/VirtualDrivers/Virtual-Display-Driver\" target=\"_blank\" rel=\"noopener noreferrer\"><code>VirtualDrivers/Virtual-Display-Driver</code></a>, install it, and turn on the new monitor.", "In Windows <b>Settings &gt; System &gt; Display</b>, select the new monitor and choose <b>Extend these displays</b>.", "In ALTAB AFK, click <b>→ AFK</b> on a card, or <b>Lahat → AFK</b> (All → AFK) at the top to move everything you can see.", "To bring them back, click <b>Ibalik</b> (Return) on the card, or <b>Ibalik lahat</b> (Return all). The window goes back to its old position and size.", "Monitor numbers look wrong? Open the large view of any window, pick the monitor in the list, and click <b>Ipakita</b> (Show) to see its number. You can change it with <b>Ayusin monitor</b> (Fix monitor).", "Move the game to <b>MONITOR AFK</b> (see the previous tab).", "Click the game's card to open the large view.", "Click the blue <b>FULLSCREEN</b> button at the bottom center. Your mouse and keyboard go to the game and your arrow appears in the stream.", "To exit, press <kbd>F8</kbd>. It's also shown at the bottom of the screen while in fullscreen.", "If the mouse gets stuck: press <b>Ctrl + Alt + Del</b> then <b>Esc</b>. Takeover only works on the PC itself, not from a phone. Games with anti-cheat (like Valorant) may not accept simulated mouse and keyboard input, so use it carefully.", "Click <b>⚡ BOOST</b> at the top. You'll see your PC's CPU, RAM and Disk.", "Click <b>BOOST LAHAT</b> (Boost All). It cleans temp files, gives back RAM, sets High Performance and prioritizes your games.", "In the list below, tick the apps you want to close and click <b>Isara ang napili</b> (Close selected). It closes them gently first, like clicking the X.", "<b>Pagaanin ang mga laro sa AFK</b> (Lighten AFK games) helps the game you're using run smoother. There's also <b>Ibalik sa normal</b> (Restore normal).", "This can't push your hardware past its limits. Lowering the Graphics Quality in each game still helps the most.", "On the PC, open <code>run-remote.bat</code> in the ALTAB AFK folder (<code>%LOCALAPPDATA%\\ALTAB AFK</code>). Enter a password when asked.", "You'll see the address for your phone there (e.g. <code>http://192.168.x.x:5055</code>). Open it on a phone on the <b>same Wi-Fi</b>.", "Enter the password. Tap = click, long press = right-click, drag = hold and drag, two fingers = scroll.", "To use it away from home, use <b>Tailscale</b>. Don't port-forward your PC to the internet.", "Anyone with the password has full control of your PC. Use a strong password and don't share it.", null, "Frequently asked questions.", "What PC do I need?", "Windows 10 or 11, 64-bit. It won't work on Mac or Linux. You don't need to install Python or anything else, everything is in the download.", "Is it safe?", "It runs on your own PC (<code>127.0.0.1</code>) and isn't open to other devices unless you yourself turn on remote mode with a password. It has no digital signature yet, so Windows or your antivirus may show a warning. BOOST doesn't touch the registry or system files, and it doesn't kill system processes.", "Can I get banned from a game for using it?", "We can't guarantee anything. It uses simulated mouse and keyboard input, which games with strict anti-cheat (like Valorant) may not accept. Read your game's rules and use it at your own risk. ALTAB AFK isn't affiliated with Roblox, Microsoft, or any game.", "Do I need a virtual monitor?", "Not for most features. Live preview, control, categories and BOOST work without it. A virtual (or extra) monitor is only needed for MONITOR AFK and Takeover.", "Is it heavy on my PC?", "While the app is open with live previews, it uses extra CPU. When the app window is closed, it does almost nothing. <b>Preview: Auto</b>, <b>Tipid</b> (Economy) and <b>Pause previews</b> lighten it, and ALTAB AFK runs at a lower priority than your games.", "How do I update or remove it?", "To update, download the new zip and run <code>Setup.bat</code> again. To remove it, run <code>uninstall-app.bat</code> in <code>%LOCALAPPDATA%\\ALTAB AFK</code>, then delete that folder.", "Stop Alt+Tabbing.", "One download. One page. All your windows, in your hands.", "⬇ Download for Windows", null, null, "ALTAB AFK isn't affiliated with Roblox, Microsoft, or any game. All names belong to their respective owners.", "A. At home (same Wi-Fi)", "On the PC, open <code>run-remote.bat</code> in the ALTAB AFK folder (<code>%LOCALAPPDATA%\\ALTAB AFK</code>). This isn't the normal icon: this is what turns on phone mode.", "The first time, create a <b>password</b> (twice). You won't see what you type, that's normal. Use at least 8 characters.", "If a Windows Firewall prompt appears, tick <b>Private networks</b> only. Do not tick Public.", "In the black window you'll see the address for your phone, e.g. <code>http://192.168.1.20:5055</code>. Write it down or screenshot it.", "On a phone connected to the <b>same Wi-Fi</b>, open the browser and type that address. Enter the password. You'll now see your PC's windows.", "B. Away from home", "Install <b>Tailscale</b> (free) on the PC and on the phone. Log in with the <b>same account</b>. It's encrypted and your PC isn't exposed to the internet.", "On the PC, find the Tailscale IP (starts with <code>100.</code>). On the phone, open <code>http://100.x.x.x:5055</code> using that IP.", "The PC must be <b>on, awake and unlocked</b>, with <code>run-remote.bat</code> running. Never port-forward your PC on the router.", "C. Using it on the phone", "<b>Tap</b> = click. <b>Long press</b> = right-click. <b>One-finger drag</b> = hold and drag. <b>Two fingers</b> up or down = scroll.", "For games: turn on <b>Game keys</b> for W A S D, Jump, Shift, E, R, F, and <b>Look</b> for the camera (e.g. Roblox).", "To type text: use the <b>Mag-type dito</b> (Type here) box, then Enter. There's also a row for Esc, Enter, Tab, Backspace, Space and arrows.", "To stop phone mode: close the black <code>run-remote.bat</code> window. To change the password: delete <code>remote_password.json</code> and run <code>run-remote.bat</code> again.", "Anyone with the password has full control of your PC. Use a strong password and don't share it. It's slower than a real remote desktop, and games with anti-cheat may flag simulated input. It won't work if the PC is locked or asleep."];
+(function(){
+  var TL = [], lang = 'tl';
+  var els = document.querySelectorAll('[data-i]');
+  for (var i = 0; i < els.length; i++) TL[+els[i].getAttribute('data-i')] = els[i].innerHTML;
+  var soon = document.getElementById('dlsoon');
+  function meta(){
+    var a = document.getElementById('dlsize'), b = document.getElementById('dlver');
+    if (a) a.textContent = FILE_SIZE; if (b) b.textContent = VERSION;
+  }
+  function setLang(l, save){
+    lang = l;
+    for (var i = 0; i < els.length; i++){
+      var k = +els[i].getAttribute('data-i');
+      els[i].innerHTML = (l === 'en' && EN[k] !== null) ? EN[k] : TL[k];
+    }
+    document.documentElement.lang = l === 'en' ? 'en' : 'tl';
+    document.getElementById('l-tl').setAttribute('aria-pressed', l === 'tl' ? 'true' : 'false');
+    document.getElementById('l-en').setAttribute('aria-pressed', l === 'en' ? 'true' : 'false');
+    meta();
+    if (save){ try { localStorage.setItem('altab_lang', l); } catch(e){} }
+  }
+  document.getElementById('l-tl').addEventListener('click', function(){ setLang('tl', true); });
+  document.getElementById('l-en').addEventListener('click', function(){ setLang('en', true); });
+  var all = document.querySelectorAll('[data-download]');
+  for (var j = 0; j < all.length; j++){
+    var a = all[j];
+    if (a.id !== 'dlmain') continue;
+    if (DOWNLOAD_URL){ a.href = DOWNLOAD_URL; a.target = '_blank'; a.rel = 'noopener noreferrer'; }
+    else a.addEventListener('click', function(e){ e.preventDefault(); soon.hidden = false; });
+  }
+  var tabs = document.querySelectorAll('.tabs2 button');
+  function show(id){
+    for (var t = 0; t < tabs.length; t++){
+      var on = tabs[t].getAttribute('aria-controls') === id;
+      tabs[t].setAttribute('aria-selected', on ? 'true' : 'false');
+      document.getElementById(tabs[t].getAttribute('aria-controls')).hidden = !on;
+    }
+  }
+  for (var m = 0; m < tabs.length; m++) tabs[m].addEventListener('click', function(){ show(this.getAttribute('aria-controls')); });
+  meta();
+  var saved = null; try { saved = localStorage.getItem('altab_lang'); } catch(e){}
+  if (saved === 'en' || location.hash === '#en') setLang('en', false);
+})();
+</script>
+</body></html>
